@@ -69,7 +69,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PoInfoModule,
     PoTabsModule,
     PoSlideModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

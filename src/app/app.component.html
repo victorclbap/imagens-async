@@ -32,14 +32,16 @@ p-primary-label="Visualizar"
 
   <po-modal
     #modalVisualizarImagem
+    id="modalVisualizarImagem"
     p-size="md"
     [p-click-out]="true"
     [p-hide-close]="true"
   >
-    <img [src]="imagemSelecionada" />
+    <img id="imagemSelecionada" [src]="imagemSelecionada" />
+
     <div class="container-slider">
-      <po-divider p-label="Outras imagens"> </po-divider>
-      <po-slide [p-slides]="slideItems" [p-interval]="0"  [p-height]="200" > </po-slide>
+      <po-divider> </po-divider>
+      <po-slide id="slides"[p-slides]="slideItems" [p-interval]="4000" > </po-slide>
     </div>
   </po-modal>
 </po-page-default>

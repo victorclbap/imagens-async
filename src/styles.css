@@ -107,3 +107,14 @@
   opacity: 0.8;
 }
 
+
+ #modalVisualizarImagem .po-modal-body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+#slides .po-slide-item {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
