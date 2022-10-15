@@ -1,8 +1,7 @@
 <po-page-default p-title="imagens">
-
-    <div *ngIf="imagens.length > 1 ; else semImagem">
+  <div *ngIf="imagens.length > 1; else semImagem">
     <po-widget
-    (p-primary-action)="abrirModalVisualizarImagem(imagem)"
+      (p-primary-action)="abrirModalVisualizarImagem(imagem)"
       id="widgetFooterImages"
       [p-height]="280"
       *ngFor="let imagem of imagens"
@@ -12,9 +11,10 @@
       p-primary-label="Visualizar"
     >
     </po-widget>
-
   </div>
-  <ng-template #semImagem>Content to render when condition is false.</ng-template>
+  <ng-template #semImagem
+    >Content to render when condition is false.</ng-template
+  >
   <!-- <po-widget
 id="widgetFooterImages"
 [p-height]="280"
@@ -33,13 +33,13 @@ p-primary-label="Visualizar"
   <po-modal
     #modalVisualizarImagem
     p-size="md"
-    p-click-out="true"
+    [p-click-out]="true"
     [p-hide-close]="true"
   >
     <img [src]="imagemSelecionada" />
-
-    
+    <div class="container-slider">
+      <po-divider p-label="Outras imagens"> </po-divider>
+      <po-slide [p-slides]="slideItems" [p-interval]="0"  [p-height]="200" > </po-slide>
+    </div>
   </po-modal>
-
-
 </po-page-default>

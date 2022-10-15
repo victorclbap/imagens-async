@@ -2,7 +2,7 @@ import { Imagens } from './interfaces/Imagens';
 import { Observable } from 'rxjs';
 import { ImagensService } from './services/imagens.service';
 import { Component, ViewChild } from '@angular/core';
-import { PoSlideItem } from '@po-ui/ng-components';
+import { PoNotificationService, PoSlideItem } from '@po-ui/ng-components';
 
 import {
   PoDialogService,
@@ -16,25 +16,21 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  slideItems: Array<PoSlideItem> = [];
+
   @ViewChild('modalVisualizarImagem', { static: true })
   modalVisualizarImagem!: PoModalComponent;
 
-
-
   public imagens: any[] = [];
+  slideItem!: PoSlideItem;
 
   constructor(
     private poAlert: PoDialogService,
-    private ImagensService: ImagensService
+    private ImagensService: ImagensService,
+    private notificationService: PoNotificationService,
   ) {}
 
   ngOnInit() {
-
-
-    // this.imagens$ = this.ImagensService.obterImagens()
-
-    // this.imagens$ = this.ImagensService.obterImagens()
-
     this.ImagensService.obterImagens().subscribe({
       next: (imagens: any) => {
         console.log(
@@ -44,55 +40,34 @@ export class AppComponent {
         );
         this.imagens = imagens;
 
-        console.log(this.imagens)
 
+        // const item: PoSlideItem = Object.assign({}, this.slideItem);
+        // item.action = item.action = this.showAction.bind(this, 'click') ;
 
-        // imagens.map((imagem: any) => {
-        //   this.imagens$ =  imagem.urls.full;
-        //   console.log(this.imagens$)
-        // }
-
-        // );
+        this.imagens.map((imagem) => {
+          this.slideItems = [...this.slideItems, { image: imagem.urls.full, action: this.showAction.bind(this) }];
+        });
       },
     });
   }
 
   imagemSelecionada: any;
 
-  public abrirModalVisualizarImagem(imagem: any) {
 
-    console.log(imagem.urls.full)
-    this.imagemSelecionada = imagem.urls.full
-    this.modalVisualizarImagem.open();
 
-    // this.imagemSelecionada = imagem.Z5_URL;
-    // this.modalVisualizarImagem.open();
+
+
+  private showAction(evento: any) {
+    console.log(evento.image)
+    this.imagemSelecionada = evento.image;
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  public abrirModalVisualizarImagem(imagem: any) {
+    this.imagemSelecionada = imagem.urls.full;
+    this.modalVisualizarImagem.open();
+    console.log(this.slideItems)
+  }
 
   confirmarExcluirImagem(recno: number, descricao: string) {
     this.poAlert.confirm({
@@ -106,8 +81,4 @@ export class AppComponent {
       },
     });
   }
-
-
-
-
 }
