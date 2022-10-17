@@ -12,16 +12,17 @@
   max-height: 400px;
 } */
 
- #imagemSelecionada {
-  width:  736px;
+#imagemSelecionada {
+  width: 736px;
   height: 340px;
   object-fit: cover;
 }
 
+.slider-container {
+  margin-top: 25px;
+}
 
 .po-modal-body {
   overflow-x: hidden;
   overflow-y: hidden;
 }
-
-

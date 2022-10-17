@@ -33,20 +33,17 @@ export class AppComponent {
   ngOnInit() {
     this.ImagensService.obterImagens().subscribe({
       next: (imagens: any) => {
-        console.log(
-          imagens.map((imagem: any) => {
-            console.log(imagem.urls.full);
-          })
-        );
         this.imagens = imagens;
 
 
         // const item: PoSlideItem = Object.assign({}, this.slideItem);
         // item.action = item.action = this.showAction.bind(this, 'click') ;
 
-        this.imagens.map((imagem) => {
-          this.slideItems = [...this.slideItems, { image: imagem.urls.full, action: this.showAction.bind(this) }];
+        this.slideItems = imagens.map((imagem: any) => {
+         return { image: imagem.urls.full, action: this.showAction.bind(this) };
         });
+
+        console.log(this.slideItems)
       },
     });
   }

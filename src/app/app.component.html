@@ -38,10 +38,9 @@ p-primary-label="Visualizar"
     [p-hide-close]="true"
   >
     <img id="imagemSelecionada" [src]="imagemSelecionada" />
-
-    <div class="container-slider">
-      <po-divider> </po-divider>
-      <po-slide id="slides"[p-slides]="slideItems" [p-interval]="4000" > </po-slide>
+    <po-divider p-label="Outras imagens"></po-divider>
+    <div class="slider-container">
+      <po-slide id="slides"[p-slides]="slideItems" [p-interval]="4000" [p-height]="200"> </po-slide>
     </div>
   </po-modal>
 </po-page-default>
